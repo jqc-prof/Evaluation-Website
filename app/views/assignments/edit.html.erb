@@ -1,0 +1,15 @@
+<h1>Editing assignment</h1>
+
+<%= render "form", assignment: @assignment %>
+
+<br>
+
+<div class="btn-group">
+  <button class="btn btn-outline-primary" type="button">
+    <%= link_to "Show this assignment", @assignment %>
+  </button>
+
+  <button class="btn btn-outline-primary" type="button">
+    <%= link_to "Back to assignments", assignments_path %>
+  </button>
+</div>

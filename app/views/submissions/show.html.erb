@@ -1,0 +1,39 @@
+<h3>
+  Submission <%= @submission.id %>
+</h3> 
+
+<%= render @submission %>
+
+<div class="btn-group mt-3" style="">
+<%if current_user.role == "teacher" || (current_user.role == "student" && User.find(@submission.user_id).id == current_user.id) %>
+  <button class="btn btn-outline-primary" type="submit">
+    <%= link_to "Edit this submisson", edit_submission_path(@submission), class:"stretched-link" %>
+  </button>
+<%end%>
+
+  <button class="btn btn-outline-primary" type="submit">
+    <%= link_to "View Assignment", "/assignments/"+@submission.assignment_id.to_s %>
+  </button>
+<%if !(User.find(@submission.user_id).id == current_user.id) %>
+  <button class="btn btn-outline-success" type="submit">
+    <%= link_to "Rate this submission", new_rating_path(@submission), class:"stretched-link" %>
+  </button>
+<%end%>
+
+  <!--<%= link_to "Edit this submission", edit_submission_path(@submission) %> |
+  <%= link_to "Back to submissions", submissions_path %> -->
+</div>
+<%if current_user.role == "teacher" || User.find(@submission.user_id).id == current_user.id%>
+<%= button_to "Destroy this submission", @submission, method: :delete, class: "btn btn-outline-danger mt-3" %>
+<%end%>
+<br> <br>
+<h5>
+  Ratings:
+</h5> 
+
+<div id="submissions">
+  <% @ratings.each do |rating| %>
+    <%= render rating %>
+    <br>
+  <% end %>
+</div>

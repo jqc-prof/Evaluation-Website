@@ -1,0 +1,16 @@
+<div class="card card-body border-0">
+  <p>
+    <strong><%= assignment.title %></strong> by @<%= assignment.user.email.split('@')[0] %>
+    
+  </p>
+
+  <p>
+    <%= assignment.body %>
+  </p>
+
+  <%= link_to '', assignment, class:"stretched-link" %>
+  <%if current_user.role == "teacher" && User.find(assignment.user_id).id == current_user.id%>
+  <% link_to 'Edit', edit_assignment_path(assignment)%>
+  <%end%>
+  <% link_to 'Back', assignments_path%>
+</div>

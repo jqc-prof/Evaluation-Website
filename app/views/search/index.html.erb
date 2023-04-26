@@ -1,0 +1,23 @@
+<h1 class = "text-center"><%=pluralize(@assignments.count, "Result")%></h1>
+
+<br>
+<div class = "container">
+    <table class = "">
+        <thead>
+            <tr>
+                <th><%= sort_link(@query, :title, "", default_order: :asc)%>
+                <th><%= sort_link(@query, :body, "")%>
+            </tr>
+        </thead>
+        <tbody>
+            <%@assignments.each do |assignment|%>
+            <tr class= "card card-body mb-2">
+                <td><strong><%= link_to assignment.title, "/assignments/"+assignment.id.to_s, class:"stretched-link"%></strong></td>
+                <td><%= assignment.body.truncate_words(25)%></td>
+            </tr>
+            <%end%>
+        </tbody>
+
+    </table>
+</div>
+                

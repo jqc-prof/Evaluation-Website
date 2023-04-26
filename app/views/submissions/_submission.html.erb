@@ -1,0 +1,20 @@
+<div id="<%= dom_id submission %>">
+<div class="card card-body border-0">
+  <p>
+    <strong>
+      <%= submission.name%> 
+    </strong>
+    posted by @<%= User.find(submission.user_id).email.split('@')[0]%>
+  </p>
+  
+  <p>
+    <%= submission.description%>
+  </p>
+
+  <%= link_to "", submission, class:"stretched-link" %>
+  <%if current_user.role == "teacher" || User.find(submission.user_id).id == current_user.id%>
+  <% link_to 'Edit', edit_submission_path(submission)%>
+  <%end%>
+  
+</div>
+</div>

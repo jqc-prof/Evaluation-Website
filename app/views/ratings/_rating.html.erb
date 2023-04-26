@@ -1,0 +1,17 @@
+<div class="card card-body border-0">
+  <div id="<%= dom_id rating %>">
+    <p>
+      Rated <strong><%= rating.score %></strong> by @<%= rating.user.email.split('@')[0] %>
+    </p>
+
+    <p>
+      <%= rating.body %>
+    </p>
+
+  <%= link_to '', rating, class:"stretched-link" %>
+<%if current_user.role == "teacher" || User.find(rating.user_id).id == current_user.id%>
+  <% link_to 'Edit', edit_rating_path(rating)%>
+<%end%>
+  <% link_to 'Back', ratings_path%>
+  </div>
+</div>

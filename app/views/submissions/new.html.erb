@@ -1,0 +1,11 @@
+<h1>New submission for Assignment <%= flash[:asig_ref]%></h1>
+
+<%= render "form", submission: @submission %>
+
+<br>
+
+<div>
+  <button class="btn btn-outline-primary" type="button">
+    <%= link_to "Back to submissions", submissions_path %>
+  </button>
+</div>

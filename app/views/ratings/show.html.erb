@@ -1,0 +1,21 @@
+<br>
+<%= render @rating %>
+
+
+<div class="btn-group mt-3" style="">
+<%if current_user.role == "teacher" || User.find(@rating.user_id).id == current_user.id%>
+  <button class="btn btn-outline-primary" type="submit">
+    <%= link_to "Edit this rating", edit_rating_path(@rating), class:"stretched-link" %>
+  </button>
+<%end%>
+
+  <button class="btn btn-outline-primary" type="submit">
+    <%= link_to "Show Submission", "/submissions/"+@rating.submission_id.to_s %>
+  </button>
+
+  <!--<%= link_to "Edit this rating", edit_rating_path(@rating) %> |
+  <%= link_to "Back to ratings", ratings_path %> -->
+</div>
+<%if current_user.role == "teacher" || User.find(@rating.user_id).id == current_user.id%>
+<%= button_to "Destroy this rating", @rating, method: :delete, class: "btn btn-outline-danger mt-3 mb-3" %>
+<%end%>
